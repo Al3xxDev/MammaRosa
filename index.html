@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristorante Mamma Rosa | Cucina di Mare & Tradizione Salernitana</title>
+    <meta name="description" content="Ristorante di mare Mamma Rosa a Salerno. Pescato del giorno freschissimo, specialità di baccalà, paccheri alla genovese di polpo e tradizioni della costiera.">
+    <meta name="keywords" content="Ristorante Mamma Rosa, Ristorante di Mare Salerno, Pesce Fresco Salerno, Baccalà, Zuppa di Cozze, Cucina Salernitana">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Ristorante Mamma Rosa - Salerno">
+    <meta property="og:description" content="Eccellenza della cucina di mare salernitana, pescato del giorno e tradizioni di famiglia.">
+    <meta property="og:image" content="assets/header.jpg">
+    <meta property="og:type" content="restaurant">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/menu/Logo.png">
+
+    <!-- Preload LCP Hero Image & Fonts -->
+    <link rel="preload" as="image" href="assets/header.jpg" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+    <!-- FontAwesome Icons (Asynchronous non-render-blocking) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
+    <!-- Leaflet.js Interactive Map CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"></noscript>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.min.css">
+    
+    <!-- Deferred App Logic -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="brand-logo">
+                <img src="assets/menu/Logo.png" alt="Mamma Rosa Logo" class="logo-img" width="52" height="52">
+                <div class="brand-text">
+                    <span class="brand-name">Mamma Rosa</span>
+                    <span class="brand-sub">Ristorante di Mare • Salerno</span>
+                </div>
+            </a>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#storia" class="nav-link"><i class="fa-solid fa-anchor"></i> La Storia</a>
+                <a href="#signature" class="nav-link"><i class="fa-solid fa-crown"></i> Piatti Firma</a>
+                <a href="#menu" class="nav-link"><i class="fa-solid fa-utensils"></i> Menù</a>
+                <a href="#vini" class="nav-link"><i class="fa-solid fa-wine-glass"></i> Cantina</a>
+                <a href="#info" class="nav-link"><i class="fa-solid fa-clock"></i> Orari & Info</a>
+
+                <div class="mobile-nav-socials">
+                    <span class="mobile-social-title">Seguici su:</span>
+                    <div class="mobile-social-buttons">
+                        <a href="https://www.instagram.com/___mammarosa__/" target="_blank" rel="noopener noreferrer" class="social-link-badge instagram">
+                            <i class="fa-brands fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://www.facebook.com/mammarosa.ristorantesalerno/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-link-badge facebook">
+                            <i class="fa-brands fa-facebook-f"></i> Facebook
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="header-socials">
+                    <a href="https://www.instagram.com/___mammarosa__/" target="_blank" rel="noopener noreferrer" class="social-icon-btn instagram" title="Instagram @___mammarosa__">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/mammarosa.ristorantesalerno/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-icon-btn facebook" title="Facebook Ristorante Mamma Rosa">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                </div>
+                <a href="tel:+390892580555" class="btn btn-primary btn-call">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>Chiama & Prenota</span>
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Menu Mobile">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" style="background-image: url('assets/header.jpg');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fa-solid fa-fish-fins"></i> 100% Pescato Fresco del Giorno
+            </div>
+            <h1 class="hero-title">L'Autentico Sapore del Mare a Salerno</h1>
+            <p class="hero-subtitle">Una storia di passione culinaria, ricette tramandate nel tempo e materie prime d'eccellenza provenienti direttamente dal nostro golfo.</p>
+            
+            <div class="hero-cta-group">
+                <a href="#menu" class="btn btn-gold">
+                    <i class="fa-solid fa-book-open"></i> Esplora il Menù
+                </a>
+                <a href="#info" class="btn btn-outline-light">
+                    <i class="fa-solid fa-calendar-check"></i> Orari & Prenotazioni
+                </a>
+            </div>
+
+            <!-- Live Opening Status Badge -->
+            <div class="live-status-card" id="heroLiveStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Verifica orari di apertura...</span>
+            </div>
+        </div>
+
+        <a href="#storia" class="scroll-down-indicator" aria-label="Scorri in basso">
+            <i class="fa-solid fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- Highlights Strip -->
+    <section class="highlights-bar">
+        <div class="container highlights-grid">
+            <div class="highlight-item">
+                <div class="highlight-icon"><i class="fa-solid fa-water"></i></div>
+                <div class="highlight-info">
+                    <h4>Pescato Giornaliero</h4>
+                    <p>Selezionato ogni mattina ai moli di Salerno</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon"><i class="fa-solid fa-fire-burner"></i></div>
+                <div class="highlight-info">
+                    <h4>Ricette della Tradizione</h4>
+                    <p>I segreti di Mamma Rosa custoditi con cura</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon"><i class="fa-solid fa-wine-bottle"></i></div>
+                <div class="highlight-info">
+                    <h4>Vini della Casa</h4>
+                    <p>Fiano e Aglianico 100% locali ed equilibrati</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="highlight-icon"><i class="fa-solid fa-heart"></i></div>
+                <div class="highlight-info">
+                    <h4>Ospitalità Calore</h4>
+                    <p>Un'atmosfera familiare, accogliente e sincera</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story / About Section -->
+    <section class="section storia-section" id="storia">
+        <div class="container grid grid-2-col items-center">
+            <div class="storia-image-wrapper">
+                <div class="image-frame">
+                    <img src="assets/vistaDaFuori.jpg" alt="Vetrina Ristorante Mamma Rosa" class="storia-img" width="600" height="480" loading="lazy">
+                </div>
+                <div class="experience-badge">
+                    <span class="badge-number">Salerno</span>
+                    <span class="badge-text">Tradizione & Qualità</span>
+                </div>
+            </div>
+
+            <div class="storia-content">
+                <span class="section-tag"><i class="fa-solid fa-compass"></i> La Nostra Storia</span>
+                <h2 class="section-title">Custodi di Ricette Antiche e Sapori Inimitabili</h2>
+                <p class="section-lead">Il Ristorante Mamma Rosa nasce dal rispetto profondo per il mare e dalla dedizione verso la cucina tradizionale campana.</p>
+                
+                <p class="storia-text">
+                    La nostra cucina celebra la freschezza degli ingredienti locali: dalle iconiche <strong>Alici di Salerno</strong> fritte con menta fresca e cipollina novella, alle storiche <strong>Cortecce alla Mamma Rosa</strong> e la leggendaria <strong>Zuppa di Cozze alla Salernitana</strong>.
+                </p>
+                
+                <div class="storia-quote">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Il menù può variare ogni giorno in base al pescato giornaliero. Portiamo in tavola solo ciò che il mare ci dona di più fresco e genuino."</p>
+                </div>
+
+                <div class="storia-features">
+                    <div class="s-feature">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Baccalà di altissima qualità in varie preparazioni</span>
+                    </div>
+                    <div class="s-feature">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Primi piatti cotti sul momento con pasta fresca</span>
+                    </div>
+                    <div class="s-feature">
+                        <i class="fa-solid fa-check-double"></i>
+                        <span>Dolci della casa e Delizie al Limone della Costiera</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Dishes Carousel / Showcase -->
+    <section class="section signature-section bg-dark-navy" id="signature">
+        <div class="container text-center">
+            <span class="section-tag tag-gold"><i class="fa-solid fa-star"></i> Le Nostre Specialità</span>
+            <h2 class="section-title text-white">I Piatti Firma di Mamma Rosa</h2>
+            <p class="section-subtitle">I piatti più amati dai nostri ospiti, preparati secondo tradizione con ingredienti selezionati.</p>
+        </div>
+
+        <div class="container signature-grid">
+            <!-- Signature Item 1 -->
+            <div class="signature-card" data-dish="zuppa-cozze">
+                <div class="sig-img-container">
+                    <img src="assets/menu/zuppaCozze.jpg" alt="Zuppa di Cozze alla Salernitana" width="300" height="220" loading="lazy">
+                    <span class="sig-badge">MUST PROVARE</span>
+                </div>
+                <div class="sig-body">
+                    <h3>Zuppa di Cozze alla Salernitana</h3>
+                    <p>Mamma Rosa è custode della ricetta semplicissima ma di origini antiche: sole cozze freschissime con pomodorini, peperoncino, aglio, spaghetti fritti e basilico fresco.</p>
+                    <div class="sig-footer">
+                        <span class="sig-price">15 €</span>
+                        <button class="btn-icon view-dish-btn" onclick="openLightbox('assets/menu/zuppaCozze.jpg', 'Zuppa di Cozze alla Salernitana', 'Sole cozze con pomodorini, peperoncino, aglio, spaghetti fritti e basilico fresco.')">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signature Item 2 -->
+            <div class="signature-card" data-dish="paccheri-genovese">
+                <div class="sig-img-container">
+                    <img src="assets/menu/PaccheriGenovese.jpg" alt="Paccheri alla Genovese di Polpo" width="300" height="220" loading="lazy">
+                    <span class="sig-badge">PIATTO UNICO</span>
+                </div>
+                <div class="sig-body">
+                    <h3>Paccheri alla Genovese di Polpo</h3>
+                    <p>Un capolavoro con cipolla e polpo stufati insieme per 3 ore a fuoco lento, guarnito con croccante granella di pistacchio... Una vera poesia!</p>
+                    <div class="sig-footer">
+                        <span class="sig-price">15 €</span>
+                        <button class="btn-icon view-dish-btn" onclick="openLightbox('assets/menu/PaccheriGenovese.jpg', 'Paccheri alla Genovese di polpo più granella di pistacchio', 'Cipolla e polpo stufati insieme per 3 ore a fuoco lento con granella di pistacchio.')">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signature Item 3 -->
+            <div class="signature-card" data-dish="cortecce-mamma">
+                <div class="sig-img-container">
+                    <img src="assets/menu/CortecceMamma.jpg" alt="Cortecce alla Mamma Rosa" width="300" height="220" loading="lazy">
+                    <span class="sig-badge">RICETTA DI FAMIGLIA</span>
+                </div>
+                <div class="sig-body">
+                    <h3>Cortecce alla Mamma Rosa</h3>
+                    <p>Piatto storico tramandato dai genitori di Mamma Rosa: pasta fresca con olive nere, cipolla, capperi, pomodorini, Baccalà ed un pizzico di peperoncino.</p>
+                    <div class="sig-footer">
+                        <span class="sig-price">15 €</span>
+                        <button class="btn-icon view-dish-btn" onclick="openLightbox('assets/menu/CortecceMamma.jpg', 'Cortecce alla Mamma Rosa', 'Pasta fresca con olive nere, cipolla, capperi, pomodorini, Baccalà e peperoncino.')">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Signature Item 4 -->
+            <div class="signature-card" data-dish="orata-croccante">
+                <div class="sig-img-container">
+                    <img src="assets/menu/OrataCroccante.jpg" alt="Orata Croccante Fritta" width="300" height="220" loading="lazy">
+                    <span class="sig-badge">SPETTACOLO</span>
+                </div>
+                <div class="sig-body">
+                    <h3>Orata Croccante (FRITTA)</h3>
+                    <p>Orata marinata con aglio e pepe, messa sottovuoto, poi fritta per intera... uno spettacolo croccante e ricchissimo di sapore.</p>
+                    <div class="sig-footer">
+                        <span class="sig-price">20 €</span>
+                        <button class="btn-icon view-dish-btn" onclick="openLightbox('assets/menu/OrataCroccante.jpg', 'Orata Croccante (FRITTA)', 'Orata marinata con aglio e pepe, messa sottovuoto e fritta per intera.')">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Menu Section -->
+    <section class="section menu-section" id="menu">
+        <div class="container">
+            <div class="menu-header text-center">
+                <span class="section-tag"><i class="fa-solid fa-utensils"></i> Menù Digitale</span>
+                <h2 class="section-title">Esplora la Nostra Carta</h2>
+                <div class="daily-notice">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Il menù può variare ogni giorno in base al pescato giornaliero</span>
+                </div>
+            </div>
+
+            <!-- Menu Search & Filter Controls -->
+            <div class="menu-controls">
+                <!-- Search bar -->
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="menuSearchInput" placeholder="Cerca un piatto (es. Polpo, Paccheri, Baccalà, Tiramisù)..." aria-label="Cerca nel menù">
+                    <button class="clear-search" id="clearSearchBtn" style="display: none;" aria-label="Cancella ricerca">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Category Tabs -->
+                <div class="category-tabs" id="categoryTabs">
+                    <button class="tab-btn active" data-category="all"><i class="fa-solid fa-border-all"></i> Tutti</button>
+                    <button class="tab-btn" data-category="antipasti"><i class="fa-solid fa-shrimp"></i> Antipasti</button>
+                    <button class="tab-btn" data-category="primi"><i class="fa-solid fa-bowl-food"></i> Primi Piatti</button>
+                    <button class="tab-btn" data-category="secondi"><i class="fa-solid fa-fish"></i> Secondi Piatti</button>
+                    <button class="tab-btn" data-category="baccala"><i class="fa-solid fa-crown"></i> I Sapori del Baccalà</button>
+                    <button class="tab-btn" data-category="nonpesce"><i class="fa-solid fa-drumstick-bite"></i> Non Solo Pesce</button>
+                    <button class="tab-btn" data-category="contorni"><i class="fa-solid fa-carrot"></i> Contorni</button>
+                    <button class="tab-btn" data-category="dolci"><i class="fa-solid fa-cake-candles"></i> Dolci & Frutta</button>
+                    <button class="tab-btn" data-category="bevande"><i class="fa-solid fa-wine-glass"></i> Bevande</button>
+                </div>
+
+                <!-- Allergen Filter Pills -->
+                <div class="allergen-filters-bar">
+                    <span class="filter-label"><i class="fa-solid fa-filter"></i> Filtra per Allergeni / Esigenze:</span>
+                    <div class="allergen-pills" id="allergenPills">
+                        <button class="pill-btn" data-allergen="glutine"><i class="fa-solid fa-wheat-awn"></i> Glutine</button>
+                        <button class="pill-btn" data-allergen="pesce"><i class="fa-solid fa-fish"></i> Pesce</button>
+                        <button class="pill-btn" data-allergen="lattosio"><i class="fa-solid fa-cheese"></i> Lattosio</button>
+                        <button class="pill-btn" data-allergen="molluschi"><i class="fa-solid fa-dharmachakra"></i> Molluschi</button>
+                        <button class="pill-btn" data-allergen="crostacei"><i class="fa-solid fa-shrimp"></i> Crostacei</button>
+                        <button class="pill-btn reset-pill" id="resetFiltersBtn"><i class="fa-solid fa-rotate-left"></i> Resetta Filtri</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dishes Grid Container -->
+            <div class="menu-dishes-grid" id="dishesGrid">
+                <!-- Dynamically injected via app.js -->
+            </div>
+
+            <!-- Empty State if search/filter returns zero results -->
+            <div class="empty-results" id="emptyResults" style="display: none;">
+                <i class="fa-solid fa-fish-fins empty-icon"></i>
+                <h3>Nessun piatto trovato</h3>
+                <p>Nessun elemento corrisponde ai criteri di ricerca o ai filtri selezionati.</p>
+                <button class="btn btn-gold" onclick="resetAllMenuFilters()">Mostra Tutti i Piatti</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Showcase Section -->
+    <section class="section vini-section bg-gradient-navy" id="vini">
+        <div class="container">
+            <div class="grid grid-2-col items-center">
+                <div class="vini-content">
+                    <span class="section-tag tag-gold"><i class="fa-solid fa-wine-bottle"></i> La Nostra Cantina</span>
+                    <h2 class="section-title text-white">Vini della Casa & Selezione del Territorio</h2>
+                    <p class="text-light">Accompagna il pescato fresco con i sapori genuini dei vigneti salernitani e campani. I nostri vini della casa sono selezionati per esaltare ogni sfumatura di mare.</p>
+                    
+                    <div class="wine-list-cards">
+                        <div class="wine-item-card">
+                            <div class="wine-icon"><i class="fa-solid fa-wine-glass-empty"></i></div>
+                            <div class="wine-details">
+                                <h3>Vino della Casa Bianco Fermo IGT</h3>
+                                <p class="wine-blend">Fiano 65% + Malvasia Bianca 35%</p>
+                                <span class="wine-notes">Fresco, minerale e fruttato, perfetto per antipasti e crudi di mare.</span>
+                            </div>
+                            <div class="wine-prices">
+                                <span class="price-tag">0,75L — 20 €</span>
+                                <span class="price-sub">0,375L — 12 €</span>
+                            </div>
+                        </div>
+
+                        <div class="wine-item-card">
+                            <div class="wine-icon red-wine"><i class="fa-solid fa-wine-glass"></i></div>
+                            <div class="wine-details">
+                                <h3>Vino della Casa Rosso Fermo IGT</h3>
+                                <p class="wine-blend">Aglianico 100% Paestum IGT</p>
+                                <span class="wine-notes">Intenso, strutturato e armonico, ideale per baccalà e grigliate di mare.</span>
+                            </div>
+                            <div class="wine-prices">
+                                <span class="price-tag">0,75L — 20 €</span>
+                                <span class="price-sub">0,375L — 12 €</span>
+                            </div>
+                        </div>
+
+                        <div class="wine-item-card">
+                            <div class="wine-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+                            <div class="wine-details">
+                                <h3>Vino al Calice & Caffè</h3>
+                                <p class="wine-blend">Selezione del giorno</p>
+                                <span class="wine-notes">Vino al calice 7 € • Caffè in cialde (anche decaffeinato) 1 €</span>
+                            </div>
+                            <div class="wine-prices">
+                                <span class="price-tag">da 1 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vini-image-side">
+                    <div class="wine-bottle-showcase">
+                        <img src="assets/menu/Logo.png" alt="Vini Ristorante Mamma Rosa" class="wine-logo-watermark" width="280" height="280" loading="lazy">
+                        <div class="wine-badge-floating">
+                            <i class="fa-solid fa-award"></i>
+                            <span>Fiano & Aglianico Paestum I.G.P.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours, Info & Booking Section -->
+    <section class="section info-section" id="info">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-tag"><i class="fa-solid fa-circle-info"></i> Informazioni & Prenotazioni</span>
+                <h2 class="section-title">Organizza la Tua Visita</h2>
+                <p class="section-subtitle">Saremo lieti di accoglierti per farti vivere un'esperienza gastronomica autentica.</p>
+            </div>
+
+            <div class="grid grid-3-col info-cards-grid margin-top-lg">
+                
+                <!-- Card 1: Booking Policy -->
+                <div class="info-card booking-highlight-card">
+                    <div class="card-header-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <h3>Prenotazione Obbligatoria</h3>
+                    <p class="card-desc">Per garantirti il massimo comfort ed il pescato più fresco, la prenotazione è <strong>obbligatoria</strong>.</p>
+                    
+                    <div class="policy-notice">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>NON si accettano prenotazioni da vari social o mail, ma <strong>solo telefonica</strong> chiamando al numero fisso:</span>
+                    </div>
+
+                    <a href="tel:+390892580555" class="call-large-btn">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>089 25 80 555</span>
+                    </a>
+
+                    <div class="call-hours-tip">
+                        <span>Orari chiamate: <strong>10:30 – 14:00</strong> | <strong>19:45 – 22:00</strong></span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Hours & Schedule -->
+                <div class="info-card">
+                    <div class="card-header-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3>Orari di Apertura</h3>
+                    
+                    <!-- Live opening indicator -->
+                    <div class="live-status-box" id="infoLiveStatusBox">
+                        <span class="status-indicator-dot"></span>
+                        <span class="status-indicator-text">Verifica orario in corso...</span>
+                    </div>
+
+                    <ul class="schedule-list">
+                        <li class="schedule-item closed">
+                            <span class="day">Lunedì</span>
+                            <span class="hours">Riposo Settimanale (Chiuso)</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Martedì</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Mercoledì</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Giovedì</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Venerdì</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Sabato</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                        <li class="schedule-item">
+                            <span class="day">Domenica</span>
+                            <span class="hours">12:40 – 15:00 | 19:30 – 22:30</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Service & Utility Info -->
+                <div class="info-card">
+                    <div class="card-header-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3>Informazioni di Servizio</h3>
+                    
+                    <div class="utility-box-list">
+                        <div class="utility-item warning">
+                            <i class="fa-solid fa-wheat-awn-circle-exclamation"></i>
+                            <div>
+                                <h4>NO Cucina Senza Glutine</h4>
+                                <p>Causa spazio ridotto in cucina non possiamo garantire l'assenza di contaminazioni.</p>
+                            </div>
+                        </div>
+
+                        <div class="utility-item">
+                            <i class="fa-solid fa-concierge-bell"></i>
+                            <div>
+                                <h4>Servizio al Coperto</h4>
+                                <p>Servizio a persona: <strong>3,00 €</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="utility-item">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <div>
+                                <h4>Pagamenti Accettati</h4>
+                                <p>Contanti, Carte di Debito, Carte di Credito, American Express</p>
+                            </div>
+                        </div>
+
+                        <div class="utility-item">
+                            <i class="fa-solid fa-wifi"></i>
+                            <div>
+                                <h4>Wi-Fi Gratuito</h4>
+                                <p>Zone Wi-Fi gratis disponibili per i clienti</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Footer Section -->
+    <footer class="site-footer" id="contatti">
+        <div class="container footer-main-grid">
+            <div class="footer-brand-col">
+                <img src="assets/menu/Logo.png" alt="Mamma Rosa Logo" class="footer-logo" width="60" height="60" loading="lazy">
+                <h3 class="footer-brand-name">Ristorante Mamma Rosa</h3>
+                <p class="footer-brand-tagline">Cucina di mare, tradizione salernitana e pescato del giorno.</p>
+                <div class="footer-contact-items">
+                    <p><i class="fa-solid fa-phone"></i> Telefono: <a href="tel:+390892580555">+39 089 25 80 555</a></p>
+                    <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:oscar1978.el@gmail.com">oscar1978.el@gmail.com</a></p>
+                    <p><i class="fa-solid fa-location-dot"></i> Salerno (SA), Italia</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://www.instagram.com/___mammarosa__/" target="_blank" rel="noopener noreferrer" class="social-link-badge instagram">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.facebook.com/mammarosa.ristorantesalerno/?locale=it_IT" target="_blank" rel="noopener noreferrer" class="social-link-badge facebook">
+                        <i class="fa-brands fa-facebook-f"></i> Facebook
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Navigazione</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#storia">La Nostra Storia</a></li>
+                    <li><a href="#signature">Piatti Firma</a></li>
+                    <li><a href="#menu">Menù Digitale</a></li>
+                    <li><a href="#vini">La Cantina</a></li>
+                    <li><a href="#info">Orari e Prenotazioni</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-map-col">
+                <h4><i class="fa-solid fa-map-location-dot"></i> Mappa & Posizione Esatta</h4>
+                <div class="interactive-map-wrapper">
+                    <div id="restaurantMap" class="leaflet-map-container"></div>
+                    <div class="map-action-overlay">
+                        <a href="https://maps.app.goo.gl/nM2Wo7g2tKGta2Ea7" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm btn-block-map">
+                            <i class="fa-solid fa-location-arrow"></i> Apri Posizione Esatta su Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container flex-between">
+                <p>&copy; <span id="copyrightYear">2026</span> Ristorante Mamma Rosa. Tutti i diritti riservati.</p>
+                <button class="back-to-top" id="backToTopBtn" aria-label="Torna su">
+                    <i class="fa-solid fa-arrow-up"></i> Top
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dish Image Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" aria-hidden="true" role="dialog">
+        <div class="lightbox-overlay" onclick="closeLightbox()"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
+            <div class="lightbox-img-wrapper">
+                <img id="lightboxImg" src="" alt="Dettaglio Piatto">
+            </div>
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Titolo Piatto</h3>
+                <p id="lightboxDesc">Descrizione del piatto...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="app.js"></script>
+</body>
+</html>
